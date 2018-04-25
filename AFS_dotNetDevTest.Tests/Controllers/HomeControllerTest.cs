@@ -50,5 +50,18 @@ namespace AFS_dotNetDevTest.Tests.Controllers
             // Assert
             Assert.IsNotNull(result);
         }
+
+        [TestMethod]
+        public void Sentences()
+        {
+            // Arrancge
+            SentencesController controller = new SentencesController();
+
+            // Act
+            ViewResult result = controller.Index() as ViewResult;
+
+            // Assert
+            Assert.IsNotNull(result);
+        }
     }
 }

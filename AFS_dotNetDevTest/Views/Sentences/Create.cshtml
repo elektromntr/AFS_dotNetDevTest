@@ -1,0 +1,71 @@
+﻿@model AFS_dotNetDevTest.Models.Sentence
+
+@{
+    ViewBag.Title = "Create";
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Sentence</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Text, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Text, new { htmlAttributes = new { id = "text", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button class="btn btn-default" id="translate-btn">Tłumacz</button>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Translated, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Translated, new { htmlAttributes = new { id = "translated", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Translated, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <p><span id="translated-span"></span></p>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    
+}
+@*<script>
+        $('#translate-btn').click(function (e)
+            {
+            e.preventDefault();
+            var input = document.getElementById('text').value;
+            $.getJSON("//api.funtranslations.com/translate/leetspeak.json?text=" + input, function (data)
+                {
+                    $('#translated').attr('value', data.contents.translated);
+                });
+            }
+            );
+    </script>
+*@

@@ -25,6 +25,8 @@ namespace AFS_dotNetDevTest.Models
         {
         }
 
+        public DbSet<Sentence> Sentences { get; set; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
